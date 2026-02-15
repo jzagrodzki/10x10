@@ -9,6 +9,25 @@ from reportlab.pdfbase.ttfonts import TTFont
 import os
 from datetime import datetime
 
+# ====== LANGUAGE TRANSLATIONS ======
+TRANSLATIONS = {
+    'en': {
+        'title': 'Multiplication Table Test 1–10',
+        'worksheet_id': 'Worksheet ID:',
+        'instructions': 'Calculate all results. Write answers in the blanks.'
+    },
+    'no': {
+        'title': 'Gangetabell Test 1–10',
+        'worksheet_id': 'Oppgavesett ID:',
+        'instructions': 'Regn ut alle resultatene. Skriv svarene på strekene.'
+    },
+    'pl': {
+        'title': 'Test Tabliczki Mnożenia 1–10',
+        'worksheet_id': 'ID Arkusza:',
+        'instructions': 'Oblicz wszystkie wyniki. Wpisz odpowiedzi w kratkach.'
+    }
+}
+
 # ====== CONFIGURATION ======
 OUTPUT_DIR = "worksheets"
 FONT_NAME = "DejaVuSans"
@@ -49,9 +68,12 @@ def generate_problems(seed):
     random.shuffle(problems)
     return problems
 
-def create_pdf(seed, filename):
-    """Create worksheet PDF with given seed and output file."""
+def create_pdf(seed, filename, language='en'):
+    """Create worksheet PDF with given seed, output file, and language."""
     font = register_font()
+    
+    # Get translations for selected language
+    trans = TRANSLATIONS.get(language, TRANSLATIONS['en'])
 
     doc = SimpleDocTemplate(
         filename,
@@ -69,10 +91,10 @@ def create_pdf(seed, filename):
     story = []
 
     # Title and metadata
-    story.append(Paragraph("Multiplication Table Test 1–10", title_style))
+    story.append(Paragraph(trans['title'], title_style))
     story.append(Spacer(1, 6))
-    story.append(Paragraph(f"Worksheet ID: <b>{seed}</b>", normal_style))
-    story.append(Paragraph("Calculate all results. Write answers in the blanks.", normal_style))
+    story.append(Paragraph(f"{trans['worksheet_id']} <b>{seed}</b>", normal_style))
+    story.append(Paragraph(trans['instructions'], normal_style))
     story.append(Spacer(1, 12))
 
     problems = generate_problems(seed)
@@ -109,6 +131,8 @@ def main():
     parser = argparse.ArgumentParser(description="Multiplication worksheet generator")
     parser.add_argument("--seed", type=int, help="Worksheet ID for deterministic generation")
     parser.add_argument("--out", type=str, help="Output PDF filename")
+    parser.add_argument("--lang", type=str, default="en", choices=['en', 'no', 'pl'],
+                        help="Language for worksheet (en=English, no=Norwegian, pl=Polish)")
     args = parser.parse_args()
 
     seed = generate_seed(args.seed)
@@ -122,11 +146,12 @@ def main():
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         filename = f"{OUTPUT_DIR}/worksheet_{seed}_{timestamp}.pdf"
 
-    create_pdf(seed, filename)
+    create_pdf(seed, filename, args.lang)
 
     print("Done!")
     print("File:", filename)
     print("Worksheet ID:", seed)
+    print("Language:", args.lang)
 
 if __name__ == "__main__":
     main()
