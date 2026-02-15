@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #667eea;
+}
+
+h1 {
+    color: #667eea;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1em;
+}
+
+.controls {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+small {
+    display: block;
+    margin-top: 5px;
+    color: #888;
+    font-size: 0.9em;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn {
+    flex: 1;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-success {
+    background: #51cf66;
+    color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+    background: #40c057;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(81, 207, 102, 0.4);
+}
+
+.info-box {
+    background: #e7f5ff;
+    border-left: 4px solid #1c7ed6;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+.info-box strong {
+    color: #1c7ed6;
+}
+
+.info-box small {
+    color: #495057;
+    margin-top: 5px;
+}
+
+.preview {
+    margin-top: 30px;
+}
+
+.preview>h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.worksheet {
+    background: white;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.worksheet-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.worksheet-header h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.worksheet-id {
+    color: #667eea;
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+.worksheet-header p {
+    color: #666;
+    margin: 5px 0;
+}
+
+.problems-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.problem {
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background: #f8f9fa;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    color: #333;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: white;
+    font-size: 1.1em;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .problems-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .problem {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+    }
+
+    .controls,
+    .preview>h2,
+    footer {
+        display: none;
+    }
+
+    .container {
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .worksheet {
+        border: none;
+        box-shadow: none;
+    }
+}

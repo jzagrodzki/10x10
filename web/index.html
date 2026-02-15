@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10×10 Multiplication Worksheet Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Multiplication Worksheet Generator</h1>
+            <p class="subtitle">Generate randomized 10×10 multiplication tests for students</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="seedInput">Worksheet ID (optional):</label>
+                <input type="number" id="seedInput" placeholder="Leave empty for random">
+                <small>Use the same ID to regenerate identical worksheets</small>
+            </div>
+
+            <div class="button-group">
+                <button id="generateBtn" class="btn btn-primary">Generate New Worksheet</button>
+                <button id="downloadBtn" class="btn btn-success" disabled>Download PDF</button>
+            </div>
+
+            <div id="currentSeed" class="info-box" style="display: none;">
+                <strong>Current Worksheet ID:</strong> <span id="seedDisplay"></span>
+                <small>Save this ID to regenerate the same worksheet later</small>
+            </div>
+        </div>
+
+        <div id="preview" class="preview" style="display: none;">
+            <h2>Preview</h2>
+            <div class="worksheet">
+                <div class="worksheet-header">
+                    <h3>Multiplication Table Test 1–10</h3>
+                    <p class="worksheet-id">Worksheet ID: <strong id="previewSeed"></strong></p>
+                    <p>Calculate all results. Write answers in the blanks.</p>
+                </div>
+                <div id="problemsGrid" class="problems-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>💡 Tip: Each worksheet has a unique ID. Save it to print the same worksheet again later.</p>
+    </footer>
+
+    <!-- Include pdfmake library from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
