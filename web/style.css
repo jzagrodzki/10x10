@@ -57,18 +57,25 @@ label {
     color: #555;
 }
 
-input[type="number"] {
+input[type="number"],
+select.language-select {
     width: 100%;
     padding: 12px;
     font-size: 16px;
     border: 2px solid #ddd;
     border-radius: 6px;
     transition: border-color 0.3s;
+    background: white;
 }
 
-input[type="number"]:focus {
+input[type="number"]:focus,
+select.language-select:focus {
     outline: none;
     border-color: #667eea;
+}
+
+select.language-select {
+    cursor: pointer;
 }
 
 small {
